@@ -1,0 +1,276 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+}
+
+:root { 
+    --body-color : #E4E9F7 ;
+    --nav-color : #4070F4;
+    --side-nav : #010718;
+    --text-color : #FFF ;
+    --search-bar : #F2F2F2;
+    --search-text : #010718;
+}
+
+body {
+    background-color: var(--body-color);
+    height: 100vh;
+}
+body.dark {
+    --body-color : #18191A ;
+    --nav-color : #242526;
+    --side-nav : #242526;
+    --text-color : #CCC ;
+    --search-bar : #242526;
+    --search-text : #FFF;
+}
+
+body.dark .searchField i{
+    color: #fff;
+}
+
+nav{
+    position: fixed ; 
+    top: 0;
+    left: 0;
+    height: 70px;
+    width: 100%;
+    background : var(--nav-color);
+    z-index: 9999;
+}
+
+.nav-bar { 
+    position: relative;
+    height: 100%;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 30px;
+    background-color: var(--nav-color);
+    display: flex;
+    align-items: center;
+    justify-content : space-between;
+}
+
+.sideBarOpen {
+    color: var(--text-color);
+    font-size: 25px;
+    padding: 5px;
+    display: none ;
+    cursor: pointer;
+}
+
+.logo-toggle{
+        display: none;
+    }
+
+.nav-links { 
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li { 
+    margin : 0 5px ;
+}
+
+.logo a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.nav-links li a {
+    position: relative;
+    font-size: 17px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 10px;
+}
+
+.nav-links li a::before { 
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom : 0 ;
+    transform: translateX(-50%);
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: var(--text-color);
+    opacity: 0;
+    transition: all .3 ease;
+}
+
+.nav-links li:hover a::before { 
+    opacity: 1;
+}
+
+.box { 
+    display: flex;
+    align-items: center;
+}
+
+.darkLight , .searchToggle{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+}
+
+.darkLight i , .searchToggle i {
+    position: absolute;
+    color: var(--text-color);
+    font-size: 22px;
+    cursor: pointer;
+    transition: all .3 ease;
+}
+
+/* DARK OR LIGHT  */
+
+.sun {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.darkLight.active .sun {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.darkLight.active .moon{
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* INPUT */
+
+.cancel { 
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+.searchToggle.active .cancel { 
+    opacity: 1;
+    pointer-events: auto;
+}
+.searchToggle.active .search{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.searchSide {
+    position: relative;
+}
+
+.searchField{
+    position: absolute;
+    bottom: -85px;
+    right: 5px;
+    height: 50px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    background-color: var(--nav-color);
+    padding: 3px;
+    border-radius: 6px;
+    opacity: 0;
+    transition: all .3s ease;
+    pointer-events: none;
+
+}
+
+.searchField::before {
+     content: "";
+     position: absolute;
+     right: 14px;
+     top: -4px;
+     height: 12px;
+     width: 12px;
+     background-color: var(--nav-color);
+     transform: rotate(-45deg);
+     z-index: -1;
+}
+
+.searchField input { 
+    width: 100%;
+    height: 100%;
+    padding: 0 45px 0 15px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    color: var(--search-text);
+    background-color: var(--search-bar);
+}
+
+.searchToggle.active ~ .searchField{
+    bottom: -75px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.searchField i { 
+    position: absolute;
+    color: var(--nav-color);
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+@media (max-width : 790px) {
+    .menu {
+        position: fixed;
+        height: 100%;
+        width: 320px;
+        left: -100%;
+        top: 0;
+        padding: 20px;
+        background-color: var(--side-nav);
+        z-index: 100;
+        transition: all .3s ease;
+    }
+    nav.active .menu {
+        left: 0;
+    }
+    .logo-toggle{
+        display: block;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .sideBarOpen{
+        display: block;
+    }
+    .sideBarClose {
+        color: var(--text-color);
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .nav-links{
+        flex-direction: column;
+        padding-top: 30px;
+    }
+    .nav-links a{ 
+        display: block;
+        margin-top: 20px;
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
